@@ -1,0 +1,23 @@
+# Source: jxboot-helmfile-resources/templates/repositories.yaml
+apiVersion: jenkins.io/v1
+kind: SourceRepository
+metadata:
+  name: "dev"
+  labels:
+    jenkins.io/gitSync: "false"
+    gitops.jenkins-x.io/pipeline: 'namespaces'
+  annotations:
+    meta.helm.sh/release-name: 'jxboot-helmfile-resources'
+  namespace: jx
+spec:
+  description: "the git repository for the Dev environment"
+  provider: "https://github.com"
+  providerKind: 'github'
+  providerName: 'github'
+  org: "jx3-demo"
+  repo: "jx3-demo-cluster"
+  httpCloneURL: "https://github.com/jx3-demo/jx3-demo-cluster.git"
+  url: "https://github.com/jx3-demo/jx3-demo-cluster.git"
+  scheduler:
+    kind: Scheduler
+    name: "in-repo"
